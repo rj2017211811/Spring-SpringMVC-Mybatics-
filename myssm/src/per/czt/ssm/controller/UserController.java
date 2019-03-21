@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import per.czt.ssm.domain.Orders;
 import per.czt.ssm.domain.User;
 import per.czt.ssm.service.UserService;
 
@@ -23,6 +24,17 @@ public class UserController {
 		model.addAttribute(userList);
 		
 		System.out.println("显示列表");
+		System.out.println("记录条数:"+userList.size());
+		for(User u:userList)
+		{
+			System.out.println("id:"+u.getId()+" oders数目:"+u.getOrdersList().size());
+			
+			for(Orders order:u.getOrdersList())
+			{
+				System.out.println("ordersId:"+order.getId());
+			}
+			
+		}
 		return "/user/userList";
 	}
 	@RequestMapping("/delete")

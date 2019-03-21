@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 配置命名空间 -->
+<mapper namespace="per.czt.ssm.domain">
+	<!-- 一个订单对应一个用户 -->
+    <resultMap type="per.czt.ssm.domain.Orders" id="Orders">
+		<id property="id" column="oid" />
+		<!--<result column="userId" property="userId" />  -->
+		<association property="user"
+			javaType="per.czt.ssm.domain.User" >
+			
+			<id property="id" column="uid" />
+		  <result property="username" column="username" />
+			<result property="password" column="password" />
+
+		</association>
+	</resultMap>
+
+	
+
+	<!-- 配置查询语句 -->
+	<select id="searchOrders"
+		parameterType="per.czt.ssm.domain.Orders" resultMap="Orders">
+		select  u.id as uid,o.id as oid,username,password,userId from user u,orders o where u.id=o.userId;
+
+	</select>
+
+	<!-- 假设user和orders是一对多 -->
+	<resultMap type="per.czt.ssm.domain.User" id="userMap">
+		<id property="id" column="uid" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<collection property="ordersList"
+			ofType="per.czt.ssm.domain.Orders" >
+			<id property="id" column="oid" />
+			<result property="userId" column="userId"/>
+		
+		</collection>
+	</resultMap>
+
+	<!-- 配置查询语句 -->
+	<select id="searchUser" parameterType="per.czt.ssm.domain.User"
+		resultMap="userMap">
+		select  u.id as uid,o.id as oid,username,password,userId from user u,orders o where u.id=o.userId;
+
+	</select>
+	<insert id="insertUser" parameterType="per.czt.ssm.domain.User">
+		insert into
+		user(username,password) values(#{username},#{password})
+	</insert>
+	<delete id="deleteUser" parameterType="per.czt.ssm.domain.User">
+		delete from user where 1=1
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="username!=null">
+			and username=#{username}
+		</if>
+		<if test="password!=null">
+			and password=#{password}
+		</if>
+	</delete>
+	<update id="updateUser" parameterType="per.czt.ssm.domain.User">
+		update user
+		<set>
+			<if test="username!=null">
+				username=#{username},
+			</if>
+			<if test="password!=null">
+				password=#{password}
+			</if>
+		</set>
+
+		where id=#{id}
+	</update>
+
+
+
+
+
+
+
+
+
+</mapper>

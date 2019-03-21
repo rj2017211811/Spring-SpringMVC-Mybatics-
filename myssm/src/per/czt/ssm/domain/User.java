@@ -1,11 +1,15 @@
 package per.czt.ssm.domain;
 
+import java.util.List;
+import java.util.Set;
+
 public class User {
 	private Integer id;
 	private String username;
 	
 	private String password;
-	private Integer grade;
+
+	private List<Orders> ordersList;
 	public Integer getId() {
 		return id;
 	}
@@ -24,12 +28,15 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getGrade() {
-		return grade;
+	public List<Orders> getOrdersList() {
+		return ordersList;
 	}
-	public void setGrade(Integer grade) {
-		this.grade = grade;
+	public void setOrdersList(List<Orders> ordersList) {
+		this.ordersList = ordersList;
 	}
+	
+	
+	
 	
 	
 }

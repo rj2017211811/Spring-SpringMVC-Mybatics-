@@ -6,8 +6,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<typeAliases>
 		<typeAlias type="per.czt.ssm.domain.User" alias="User"/>
+		<typeAlias type="per.czt.ssm.domain.Orders" alias="Orders"/>
 	</typeAliases>
 	<mappers >
-	    <mapper resource="per/czt/ssm/domain/User.xml"/>
+	    <mapper resource="per/czt/ssm/domain/Mapper.xml"/>
+	   
+	     
 	</mappers>
+	
 </configuration>

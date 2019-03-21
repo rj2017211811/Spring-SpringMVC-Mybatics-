@@ -25,6 +25,7 @@
 					<td>${user.id }</td>
 					<td>${user.username }</td>
 					<td>${user.password }</td>
+				
 					<td><a href="${pageContext.request.contextPath }/user/delete.action?id=${user.id }">删除</a></td>
 					<td><a href="${pageContext.request.contextPath }/user/toUpdate.action?id=${user.id }">修改</a></td>
 				</tr>

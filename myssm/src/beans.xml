@@ -60,4 +60,13 @@
 	<bean id="userService" class="per.czt.ssm.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	
+	<bean id="ordersDao" class="per.czt.ssm.dao.OrdersDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- 为userService配置dao -->
+	
+	<bean id="ordersService" class="per.czt.ssm.service.OrdersServiceImpl">
+		<property name="ordersDao" ref="ordersDao"></property>
+	</bean>
 </beans>
